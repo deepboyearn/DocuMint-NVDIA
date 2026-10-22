@@ -13,9 +13,21 @@ from typing import List
 load_dotenv()
 Base.metadata.create_all(bind=engine)
 app = FastAPI(title="DocuMint API", version="1.0.0")
-origins = [x.strip() for x in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")]
-app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+origins = [
+    "http://localhost:5173",
+    "https://frontend-mu-blush-5ehxurxkz3.vercel.app",  # Tumhara Vercel frontend URL
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins, # Chaho toh yahan ["*"] bhi kar sakte ho taaki sab allow ho jaye
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 MAX_BYTES = int(os.getenv("MAX_UPLOAD_MB", "15")) * 1024 * 1024
+# -------------------------------------------
 
 @app.get("/")
 def root():
