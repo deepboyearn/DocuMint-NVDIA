@@ -58,13 +58,17 @@ Open the URL printed by Vite, usually http://localhost:5173.
 5. The extracted JSON and original filename are saved to the database.
 6. React displays the saved records. Search filters the table; Export downloads CSV or JSON.
 
-## 5. Optional AI setup
-Install/start Ollama and pull a model:
-```bash
-ollama pull llama3.2
-```
-Set `OLLAMA_URL=http://localhost:11434/api/generate` and `OLLAMA_MODEL=llama3.2` in `.env`.
-The AI step is optional. The fallback extractor keeps the project usable without it.
+### 5. Optional AI Setup (OpenRouter Integration)
+DocuMint uses OpenRouter for advanced, cloud-based LLM data extraction. The AI step is completely optional — the built-in fallback extractor keeps the project fully usable even without an API key.
+
+To enable OpenRouter AI extraction:
+1. Get your API key from [OpenRouter Keys](https://openrouter.ai/workspaces/default/keys)[cite: 2].
+2. Set the following variables in your `.env` file inside the `backend/` folder:
+```env
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+OPENROUTER_BASE_URL=[https://openrouter.ai/api/v1](https://openrouter.ai/api/v1)
+OPENROUTER_MODEL=nvidia/nemotron-3-ultra-550b-a55b:free
+AI_ENABLED=true
 
 ## 6. Suggested development milestones
 - Milestone 1: run upload and see records in the table.
