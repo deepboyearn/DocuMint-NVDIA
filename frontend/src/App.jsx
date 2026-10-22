@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-const API = import.meta.env.VITE_API_URL || 'https://documint-nvdia.onrender.com';
+const API = 'https://documint-nvdia.onrender.com';
 const prettyDate = value => value ? new Date(value).toLocaleString() : '—';
 export default function App() {
   const [docs, setDocs] = useState([]);
