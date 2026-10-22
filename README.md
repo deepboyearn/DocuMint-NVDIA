@@ -70,14 +70,14 @@ OPENROUTER_BASE_URL=[https://openrouter.ai/api/v1](https://openrouter.ai/api/v1)
 OPENROUTER_MODEL=nvidia/nemotron-3-ultra-550b-a55b:free
 AI_ENABLED=true
 
-## 6. Suggested development milestones
+### 6. Suggested development milestones
 - Milestone 1: run upload and see records in the table.
 - Milestone 2: test with sample invoices and contracts.
 - Milestone 3: improve OCR and extraction prompts.
 - Milestone 4: add authentication, user-specific access, and Supabase Storage.
 - Milestone 5: deploy frontend and API separately; use managed PostgreSQL and private object storage.
 
-## Security checklist before real use
+### Security checklist before real use
 - Add login and authorization before exposing the app publicly.
 - Validate file content and size, not only the extension.
 - Store uploads in private object storage, not public buckets.
