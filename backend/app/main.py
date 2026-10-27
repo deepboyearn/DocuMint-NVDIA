@@ -15,19 +15,19 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="DocuMint API", version="1.0.0")
 origins = [
     "http://localhost:5173",
-    "https://frontend-mu-blush-5ehxurxkz3.vercel.app",  # Tumhara Vercel frontend URL
+    "https://frontend-mu-blush-5ehxurxkz3.vercel.app",  
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins, # Chaho toh yahan ["*"] bhi kar sakte ho taaki sab allow ho jaye
+    allow_origins=origins, 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 MAX_BYTES = int(os.getenv("MAX_UPLOAD_MB", "15")) * 1024 * 1024
-# -------------------------------------------
+
 
 @app.get("/")
 def root():
@@ -89,14 +89,14 @@ def delete_document(document_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Document deleted"}
 
-#bulk upload end point
+
 @app.post("/api/documents/batch", response_model=list[DocumentOut])
 async def upload_batch_documents(files: List[UploadFile] = File(...), db: Session = Depends(get_db)):
     processed_docs = []
     for file in files:
         filename = Path(file.filename or "upload").name
         if Path(filename).suffix.lower() not in ALLOWED_EXTENSIONS:
-            continue # या एरर थ्रो कर सकते हैं
+            continue 
         
         data = await file.read()
         if not data:
